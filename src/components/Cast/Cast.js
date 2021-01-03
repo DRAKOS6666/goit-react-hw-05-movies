@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import propTypes from 'prop-types';
-import noImage from '../../../img/no-image-available.png';
+import noImage from '../../img/no-image-available.png';
 
-const CreditsList = ({ credits }) => {
+const Cast = ({ credits }) => {
   // const [ var , setVar ] = useState();
   console.log('movieCredits :>> ', credits);
 
@@ -20,14 +20,14 @@ const CreditsList = ({ credits }) => {
             }
           />
           <p>Actor name: {item.name}</p>
-          <p>Character: {item.character}</p>
+          {item.character && <p>Character: {item.character}</p>}
         </li>
       ))}
     </ul>
   );
 };
 
-CreditsList.propTypes = {
+Cast.propTypes = {
   movieCredits: propTypes.array,
 };
-export default CreditsList;
+export default Cast;

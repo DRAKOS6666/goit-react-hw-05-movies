@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import propTypes from 'prop-types';
 
-const MovieReviews = ({ reviews }) => {
+const Reviews = ({ reviews }) => {
   // const [ var , setVar ] = useState();
-  console.log('movieReviews :>> ', reviews);
+  console.log('Reviews :>> ', reviews);
   return reviews.length !== 0 ? (
     <ul>
       {reviews.map(review => (
@@ -18,7 +18,7 @@ const MovieReviews = ({ reviews }) => {
   );
 };
 
-MovieReviews.propTypes = {
+Reviews.propTypes = {
   rewiewId: propTypes.string,
 };
-export default MovieReviews;
+export default Reviews;
