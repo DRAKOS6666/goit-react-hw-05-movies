@@ -3,14 +3,6 @@ import propTypes from 'prop-types';
 import { Link, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
 
 const SearchResults = ({ movies, query }) => {
-  const history = useHistory();
-  const location = useLocation();
-  useEffect(() => {
-    history.push({
-      ...location,
-      search: `query=${query}`,
-    });
-  }, [history, location.pathname, query]);
   const { url } = useRouteMatch();
   console.log('movies :>> ', movies);
   // const [ var , setVar ] = useState();
