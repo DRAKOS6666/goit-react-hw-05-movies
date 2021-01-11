@@ -4,7 +4,7 @@ import { Link, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
 
 const SearchResults = ({ movies, query }) => {
   const { url } = useRouteMatch();
-  console.log('movies :>> ', movies);
+  // console.log('movies :>> ', movies);
   // const [ var , setVar ] = useState();
 
   return (

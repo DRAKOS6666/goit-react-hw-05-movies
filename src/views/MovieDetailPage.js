@@ -17,15 +17,15 @@ const MovieDetailPage = () => {
   const [movieCredits, setMovieCredits] = useState(null);
   const [movieReviews, setMovieReviews] = useState(null);
   const { movieId } = useParams();
-  const { path } = useRouteMatch();
+  const { path, url } = useRouteMatch();
 
   useEffect(() => {
     fetchMovieCredits(movieId).then(res => {
-      console.log('res Credits :>> ', res);
+      // console.log('res Credits :>> ', res);
       setMovieCredits(res.cast);
     });
     fetchMovieReviews(movieId).then(res => {
-      console.log('resReviews :>> ', res);
+      // console.log('resReviews :>> ', res);
       setMovieReviews(res.results);
     });
   }, []);
@@ -42,8 +42,8 @@ const MovieDetailPage = () => {
       {movie && <MovieDescription movie={movie} />}
       {/* <MovieAdvInfo movie={movie} /> */}
       <div>
-        <NavLink to={`/movies/${movieId}/credits`}>Cast</NavLink>
-        <NavLink to={`/movies/${movieId}/reviews`}>Rewiews</NavLink>
+        <NavLink to={`${url}/${movieId}/credits`}>Cast</NavLink>
+        <NavLink to={`${url}/${movieId}/reviews`}>Rewiews</NavLink>
         <Route path={`${path}/credits`}>
           <Cast credits={movieCredits} />
         </Route>

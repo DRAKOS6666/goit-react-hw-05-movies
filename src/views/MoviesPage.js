@@ -11,24 +11,28 @@ const MoviesPage = ({ items }) => {
   const history = useHistory();
   const location = useLocation();
 
-  const setSearchQuery = text => {
+  useEffect(() => {
     const queryFinal = new URLSearchParams(location.search).get('query');
-    console.log('queryFinal :>> ', queryFinal);
-    setQuery(queryFinal);
-    fetchMoviesQuery(text).then(res => {
-      setFindedMovies(res.results);
-      // window.history.pushState({
-      //   pathname:
-      // })
-    });
-  };
+    if (queryFinal) {
+      setSearchQuery(queryFinal);
+    }
+  }, []);
 
   useEffect(() => {
-    history.push({
-      ...location,
-      search: `query=${query}`,
-    });
+    if (query !== '') {
+      history.push({
+        ...location,
+        search: `query=${query}`,
+      });
+    }
   }, [query]);
+
+  const setSearchQuery = text => {
+    setQuery(text);
+    fetchMoviesQuery(text).then(res => {
+      setFindedMovies(res.results);
+    });
+  };
 
   return (
     <>
