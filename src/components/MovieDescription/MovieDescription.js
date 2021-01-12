@@ -15,7 +15,7 @@ const MovieDescription = ({ movie }) => {
 
   return (
     <>
-      {console.log('Obj movie :>> ', movie)}
+      {/* {console.log('Obj movie :>> ', movie)} */}
       <button type="button" onClick={handleButton}>
         Go Back
       </button>

@@ -7,7 +7,6 @@ import {
   fetchMovieReviews,
 } from '../service/fetchMovies';
 
-// import MovieAdvInfo from '../components/MovieAdvInfo/MovieAdvInfo';
 import MovieDescription from '../components/MovieDescription/MovieDescription';
 import Cast from '../components/Cast/Cast';
 import Reviews from '../components/Reviews/Reviews';
@@ -40,11 +39,10 @@ const MovieDetailPage = () => {
   return (
     <>
       {movie && <MovieDescription movie={movie} />}
-      {/* <MovieAdvInfo movie={movie} /> */}
       <div>
-        <NavLink to={`${url}/${movieId}/credits`}>Cast</NavLink>
-        <NavLink to={`${url}/${movieId}/reviews`}>Rewiews</NavLink>
-        <Route path={`${path}/credits`}>
+        <NavLink to={`${url}/cast`}>Cast</NavLink>
+        <NavLink to={`${url}/reviews`}>Rewiews</NavLink>
+        <Route path={`${path}/cast`}>
           <Cast credits={movieCredits} />
         </Route>
         <Route path={`${path}/reviews`}>

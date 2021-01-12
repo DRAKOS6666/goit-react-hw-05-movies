@@ -2,12 +2,14 @@ import { useState } from 'react';
 import propTypes from 'prop-types';
 import noImage from '../../img/no-image-available.png';
 
+import style from './Cast.css';
+
 const Cast = ({ credits }) => {
   // const [ var , setVar ] = useState();
-  console.log('movieCredits :>> ', credits);
-
+  // console.log('movieCredits :>> ', credits);
+  console.log(style);
   return (
-    <ul>
+    <ul className="cast-list">
       {credits.map(item => (
         <li key={item.id}>
           <img
