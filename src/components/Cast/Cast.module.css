@@ -1,0 +1,27 @@
+.castList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.listItem {
+  max-width: 300px;
+  margin: 10px;
+  box-shadow: 5px 5px 5px #000;
+  cursor: zoom-in;
+  border-radius: 10px;
+  transition: transform 0.3s linear;
+}
+
+.listItem:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.listItem img {
+  height: 450px;
+}

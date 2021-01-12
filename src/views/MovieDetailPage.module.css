@@ -1,0 +1,6 @@
+.NavLink {
+  composes: goBackBtn from '../components/MovieDescription/MovieDescription.module.css';
+  display: inline-block;
+  margin: 0;
+  margin-right: 15px;
+}

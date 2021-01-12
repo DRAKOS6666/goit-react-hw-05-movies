@@ -25,13 +25,16 @@ const HomePage = ({ moviesArr }) => {
   };
 
   return (
-    <ul>
-      {movies.map(movie => (
-        <li key={movie.id}>
-          <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-        </li>
-      ))}
-    </ul>
+    <>
+      <h1>Today in Trend</h1>
+      <ul>
+        {movies.map(movie => (
+          <li key={movie.id}>
+            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 

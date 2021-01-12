@@ -10,6 +10,7 @@ import {
 import MovieDescription from '../components/MovieDescription/MovieDescription';
 import Cast from '../components/Cast/Cast';
 import Reviews from '../components/Reviews/Reviews';
+import style from './MovieDetailPage.module.css';
 
 const MovieDetailPage = () => {
   const [movie, setMovie] = useState(null);
@@ -40,8 +41,21 @@ const MovieDetailPage = () => {
     <>
       {movie && <MovieDescription movie={movie} />}
       <div>
-        <NavLink to={`${url}/cast`}>Cast</NavLink>
-        <NavLink to={`${url}/reviews`}>Rewiews</NavLink>
+        <h3>Addition Information</h3>
+        <NavLink
+          activeStyle={{ color: 'red' }}
+          className={style.NavLink}
+          to={`${url}/cast`}
+        >
+          Cast
+        </NavLink>
+        <NavLink
+          activeStyle={{ color: 'red' }}
+          className={style.NavLink}
+          to={`${url}/reviews`}
+        >
+          Rewiews
+        </NavLink>
         <Route path={`${path}/cast`}>
           <Cast credits={movieCredits} />
         </Route>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import { toast } from 'react-toastify';
 
+import style from './Searchbar.module.css';
+
 function Searchbar({ onSubmit }) {
   const [searchText, setSearchText] = useState('');
 
@@ -28,20 +30,20 @@ function Searchbar({ onSubmit }) {
   };
 
   return (
-    <header className="Searchbar">
-      <form onSubmit={handleSubmit} className="SearchForm">
-        <button type="submit" className="SearchForm-button">
-          <span className="SearchForm-button-label">Search</span>
+    <header className={style.Searchbar}>
+      <form onSubmit={handleSubmit} className={style.SearchForm}>
+        <button type="submit" className={style.SearchFormButton}>
+          <span className={style.SearchFormButtonLabel}>Search</span>
         </button>
 
         <input
           value={searchText}
           onChange={handleChange}
-          className="SearchForm-input"
+          className={style.SearchFormInput}
           type="text"
           autoComplete="off"
           autoFocus
-          placeholder="Search images and photos"
+          placeholder="Search movies"
         />
       </form>
     </header>
