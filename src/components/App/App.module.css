@@ -1,0 +1,14 @@
+.navPanel {
+  display: flex;
+  justify-content: center;
+}
+
+.navLink {
+  composes: goBackBtn from '../MovieDescription/MovieDescription.module.css';
+  background: linear-gradient(to bottom, #64ed7b 5%, #97e1e9 100%);
+}
+
+.centerTitle {
+  text-align: center;
+  text-shadow: 2px 2px 10px yellow;
+}

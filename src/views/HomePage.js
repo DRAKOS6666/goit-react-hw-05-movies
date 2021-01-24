@@ -1,39 +1,51 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy } from 'react';
 import propTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { fetchMoviesTrends } from '../service/fetchMovies';
+import LoaderWithTitle from '../components/Loader/LoaderWithTitle/LoaderWithTitle';
 
-const HomePage = ({ moviesArr }) => {
+import style from './HomePage.module.css';
+
+// import MovieList from '../components/MovieList/MovieList';
+const MovieList = lazy(() =>
+  import(
+    '../components/MovieList/MovieList.js' /* webpackChunkName: "HomePageMovieList" */
+  ),
+);
+
+const Status = {
+  IDLE: 'idle',
+  PENDING: 'pending',
+  RESOLVED: 'resolved',
+  REJECTED: 'rejected',
+};
+
+const HomePage = () => {
   const [movies, setMovies] = useState([]);
+  const [status, setStatus] = useState(Status.IDLE);
 
   useEffect(() => {
-    const result = getListOfMovies();
-    // setMovies(() => {
-
-    // })
+    getListOfMovies();
   }, []);
 
-  useEffect(() => {
-    moviesArr(movies);
-  }, [movies, moviesArr]);
-
   const getListOfMovies = () => {
-    fetchMoviesTrends().then(res => {
-      setMovies(res.results);
-      moviesArr(movies);
-    });
+    setStatus(Status.PENDING);
+    fetchMoviesTrends()
+      .then(res => {
+        // console.log('res.result :>> ', res.results);
+        setMovies(res.results);
+        setStatus(Status.RESOLVED);
+      })
+      .catch(() => setStatus(Status.REJECTED));
   };
 
   return (
     <>
-      <h1>Today in Trend</h1>
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <h1 className={style.title}>Today in Trend</h1>
+      {status === 'pending' && <LoaderWithTitle />}
+      {status === 'resolved' && <MovieList movies={movies} />}
+      {status === 'rejected' && (
+        <h2>An error occurred during the download. Try again please.</h2>
+      )}
     </>
   );
 };

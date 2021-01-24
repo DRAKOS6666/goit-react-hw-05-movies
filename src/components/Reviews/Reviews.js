@@ -1,12 +1,9 @@
-import { useState } from 'react';
 import propTypes from 'prop-types';
 
 import style from './Reviews.module.css';
 
 const Reviews = ({ reviews }) => {
-  // const [ var , setVar ] = useState();
-  console.log('Reviews :>> ', reviews);
-  return reviews.length !== 0 ? (
+  return (
     <ul>
       {reviews.map(review => (
         <li className={style.listItem} key={review.id}>
@@ -15,8 +12,6 @@ const Reviews = ({ reviews }) => {
         </li>
       ))}
     </ul>
-  ) : (
-    <div>Sorry Reviews not found</div>
   );
 };
 

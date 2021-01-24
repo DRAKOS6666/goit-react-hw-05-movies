@@ -4,10 +4,6 @@
   justify-content: center;
 }
 
-ul {
-  list-style-type: none;
-}
-
 .listItem {
   max-width: 300px;
   margin: 10px;

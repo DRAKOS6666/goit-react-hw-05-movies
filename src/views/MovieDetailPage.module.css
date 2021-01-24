@@ -4,3 +4,11 @@
   margin: 0;
   margin-right: 15px;
 }
+
+.loaderWrapper {
+  composes: loaderWrapper from '../components/App/App.module.css';
+}
+
+.goBackBtn {
+  composes: goBackBtn from '../components/MovieDescription/MovieDescription.module.css';
+}

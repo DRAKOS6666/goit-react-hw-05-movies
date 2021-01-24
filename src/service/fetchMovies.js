@@ -1,10 +1,10 @@
 const api_key = 'a020f3725a4ebd7462350a228344f9e7';
 const BASE_URL = 'https://api.themoviedb.org/3';
 
-export function fetchMoviesQuery(query) {
+export function fetchMoviesQuery(query, page) {
   if (query) {
     return fetch(
-      `${BASE_URL}/search/movie?api_key=${api_key}&query=${query}&language=en-US&page=1&include_adult=false`,
+      `${BASE_URL}/search/movie?api_key=${api_key}&query=${query}&language=en-US&page=${page}&include_adult=true`,
     ).then(res => res.json());
   }
 }
