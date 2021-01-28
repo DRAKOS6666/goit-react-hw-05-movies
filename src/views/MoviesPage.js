@@ -1,10 +1,10 @@
 import { useEffect, useState, lazy } from 'react';
-import propTypes from 'prop-types';
+import { useHistory, useLocation } from 'react-router-dom';
+
 import Searchbar from '../Searchbar/Searchbar';
 import { fetchMoviesQuery } from '../service/fetchMovies';
-import { useHistory, useLocation } from 'react-router-dom';
-import LoaderWithTitle from '../components/Loader/LoaderWithTitle/LoaderWithTitle';
 
+import LoaderWithTitle from '../components/Loader/LoaderWithTitle/LoaderWithTitle';
 import { toast } from 'react-toastify';
 import style from './MoviesPage.module.css';
 
@@ -42,7 +42,7 @@ const MoviesPage = () => {
   }, []);
 
   useEffect(() => {
-    if (findedMovies && query) {
+    if (page > 1) {
       fetchMoviesQuery(query, page).then(res => {
         setFindedMovies(prevState => [...prevState, ...res.results]);
       });
@@ -59,17 +59,16 @@ const MoviesPage = () => {
   }, [query, page]);
 
   const moreMovies = e => {
-    setPage(prevState => (prevState += 1));
+    setPage(page => page + 1);
   };
 
   const setSearchQuery = text => {
     setPage(1);
     setQuery(text);
     setStatus(Status.PENDING);
-    fetchMoviesQuery(text, page)
+    fetchMoviesQuery(text, 1)
       .then(res => {
         if (res.results.length > 0) {
-          console.log('res.results fetch query:>> ', res.results);
           setFindedMovies(res.results);
           setStatus(Status.RESOLVED);
         } else {
@@ -114,7 +113,4 @@ const MoviesPage = () => {
   );
 };
 
-MoviesPage.propTypes = {
-  items: propTypes.array,
-};
 export default MoviesPage;

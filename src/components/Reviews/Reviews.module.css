@@ -1,6 +1,12 @@
 .listItem {
   margin: 0 auto;
-  max-width: 60%;
-  text-align: justify;
+  max-width: 70%;
+  text-align: center;
+  font-style: italic;
+  font-weight: 600;
   font-size: 1.2rem;
+}
+
+.authorNick {
+  color: rgb(24, 1, 158);
 }

@@ -1,5 +1,5 @@
 .moreBtn {
-  composes: goBackBtn from '../components/MovieDescription/MovieDescription.module.css';
+  composes: Button from '../index.module.css';
   width: 150px;
   height: 40px;
   font-size: 100%;

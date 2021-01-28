@@ -8,7 +8,6 @@
   max-width: 300px;
   margin: 10px;
   box-shadow: 5px 5px 5px #000;
-  cursor: zoom-in;
   border-radius: 10px;
   transition: transform 0.3s linear;
 }
@@ -20,4 +19,16 @@
 
 .listItem img {
   height: 450px;
+}
+
+.listItem p {
+  text-align: left;
+  padding: 0 10px;
+}
+
+.listItem p span {
+  padding-left: 3px;
+  font-weight: bold;
+  display: block;
+  text-shadow: 3px 3px 10px#6ec3ff;
 }

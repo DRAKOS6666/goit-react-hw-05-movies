@@ -4,7 +4,7 @@
 }
 
 .navLink {
-  composes: goBackBtn from '../MovieDescription/MovieDescription.module.css';
+  composes: Button from '../../index.module.css';
   background: linear-gradient(to bottom, #64ed7b 5%, #97e1e9 100%);
 }
 

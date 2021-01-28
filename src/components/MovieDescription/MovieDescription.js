@@ -1,26 +1,16 @@
-import { useState } from 'react';
-import propTypes from 'prop-types';
-import { Link, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import StarRatings from 'react-star-ratings';
 import style from './MovieDescription.module.css';
 import noPoster from '../../img/no-movie-poster.png';
 
-const Status = {
-  IDLE: 'idle',
-  PENDING: 'pending',
-  RESOLVED: 'resolved',
-  REJECTED: 'rejected',
-};
-
 const MovieDescription = ({ movie }) => {
-  const [status, setStatus] = useState(Status.IDLE);
-
+  const { wrapper, image, title, ratingText, date } = style;
   return (
     <>
-      <div className={style.wrapper}>
+      <div className={wrapper}>
         <img
-          className={style.image}
+          className={image}
           alt={movie.title}
           src={
             movie.poster_path
@@ -29,17 +19,17 @@ const MovieDescription = ({ movie }) => {
           }
         />
         <div>
-          <h1 className={style.title}>{movie.title}</h1>
-          <p className={style.ratingText}>
-            Release date:{' '}
-            <span className={style.date}>{movie.release_date}</span>
+          <h1 className={title}>{movie.title}</h1>
+          <p className={ratingText}>
+            Release date: <span className={date}>{movie.release_date}</span>
           </p>
-          <p className={style.ratingText}>Rating:</p>
+          <p className={ratingText}>Rating:</p>
           <StarRatings
             rating={movie.vote_average / 2}
             numberOfStars={5}
             name="rating"
             starRatedColor="yellow"
+            starDimension="5vw"
           />
 
           {movie.overview && (
@@ -67,6 +57,6 @@ const MovieDescription = ({ movie }) => {
 };
 
 MovieDescription.propTypes = {
-  movie: propTypes.object,
+  movie: PropTypes.object.isRequired,
 };
 export default MovieDescription;

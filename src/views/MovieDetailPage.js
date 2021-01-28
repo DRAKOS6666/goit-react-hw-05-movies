@@ -1,4 +1,3 @@
-import propTypes from 'prop-types';
 import { useState, useEffect, Suspense, lazy } from 'react';
 import {
   Route,
@@ -8,11 +7,7 @@ import {
   useLocation,
   useHistory,
 } from 'react-router-dom';
-import {
-  fetchMovieID,
-  fetchMovieCredits,
-  fetchMovieReviews,
-} from '../service/fetchMovies';
+import { fetchMovieID, fetchMovieReviews } from '../service/fetchMovies';
 
 import LoaderWithTitle from '../components/Loader/LoaderWithTitle/LoaderWithTitle';
 import style from './MovieDetailPage.module.css';
@@ -36,8 +31,6 @@ const Status = {
 
 const MovieDetailPage = () => {
   const [movie, setMovie] = useState(null);
-  const [movieCredits, setMovieCredits] = useState(null);
-  const [movieReviews, setMovieReviews] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
 
   const history = useHistory();
@@ -47,28 +40,17 @@ const MovieDetailPage = () => {
 
   useEffect(() => {
     setStatus(Status.PENDING);
-    fetchMovieCredits(movieId).then(res => {
-      // console.log('res Credits :>> ', res);
-      setMovieCredits(res.cast);
-    });
-    fetchMovieReviews(movieId).then(res => {
-      setMovieReviews(res.results);
-    });
-  }, []);
-
-  useEffect(() => {
-    setStatus(Status.PENDING);
     fetchMovieID(movieId)
-      .then(res => {
+      .then(async res => {
         setMovie(res);
+        await setStatus(Status.RESOLVED);
       })
-      .then(setStatus(Status.RESOLVED));
+      .catch(() => setStatus(Status.REJECTED));
   }, [movieId]);
 
-  const handleButton = e => {
+  const handleButton = () => {
     history.push(location?.state?.from ?? '/');
   };
-
   return (
     <>
       <button className={style.goBackBtn} type="button" onClick={handleButton}>
@@ -81,7 +63,7 @@ const MovieDetailPage = () => {
           <Suspense fallback={<LoaderWithTitle />}>
             {movie && <MovieDescription movie={movie} />}
           </Suspense>
-          {(movieReviews || movieCredits) && (
+          {movie && (
             <div>
               <h3>Addition Information</h3>
               <NavLink
@@ -94,35 +76,36 @@ const MovieDetailPage = () => {
               >
                 Cast
               </NavLink>
-              {movieReviews && movieReviews.length > 0 && (
-                <NavLink
-                  activeStyle={{ color: 'red' }}
-                  className={style.NavLink}
-                  to={{
-                    pathname: `${url}/reviews`,
-                    state: { from: location.state.from },
-                  }}
-                >
-                  Rewiews
-                </NavLink>
-              )}
+
+              <NavLink
+                activeStyle={{ color: 'red' }}
+                className={style.NavLink}
+                to={{
+                  pathname: `${url}/reviews`,
+                  state: { from: location.state.from },
+                }}
+              >
+                Rewiews
+              </NavLink>
+
               <Suspense fallback={<LoaderWithTitle />}>
                 <Route path={`${path}/cast`}>
-                  <Cast credits={movieCredits} />
+                  <Cast />
                 </Route>
                 <Route path={`${path}/reviews`}>
-                  <Reviews reviews={movieReviews} />
+                  <Reviews />
                 </Route>
               </Suspense>
             </div>
           )}
         </>
       )}
+
+      {status === 'rejected' && (
+        <h2>An error occurred during the download. Try again please.</h2>
+      )}
     </>
   );
 };
 
-// MovieDetailPage.propTypes = {
-//     params: propTypes.
-// }
 export default MovieDetailPage;

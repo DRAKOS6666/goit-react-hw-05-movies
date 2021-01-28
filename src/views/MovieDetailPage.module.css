@@ -1,5 +1,5 @@
 .NavLink {
-  composes: goBackBtn from '../components/MovieDescription/MovieDescription.module.css';
+  composes: Button from '../index.module.css';
   display: inline-block;
   margin: 0;
   margin-right: 15px;
@@ -10,5 +10,5 @@
 }
 
 .goBackBtn {
-  composes: goBackBtn from '../components/MovieDescription/MovieDescription.module.css';
+  composes: Button from '../index.module.css';
 }

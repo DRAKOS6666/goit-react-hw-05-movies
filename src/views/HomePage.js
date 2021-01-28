@@ -1,11 +1,9 @@
 import { useState, useEffect, lazy } from 'react';
-import propTypes from 'prop-types';
 import { fetchMoviesTrends } from '../service/fetchMovies';
-import LoaderWithTitle from '../components/Loader/LoaderWithTitle/LoaderWithTitle';
 
+import LoaderWithTitle from '../components/Loader/LoaderWithTitle/LoaderWithTitle';
 import style from './HomePage.module.css';
 
-// import MovieList from '../components/MovieList/MovieList';
 const MovieList = lazy(() =>
   import(
     '../components/MovieList/MovieList.js' /* webpackChunkName: "HomePageMovieList" */
@@ -31,7 +29,6 @@ const HomePage = () => {
     setStatus(Status.PENDING);
     fetchMoviesTrends()
       .then(res => {
-        // console.log('res.result :>> ', res.results);
         setMovies(res.results);
         setStatus(Status.RESOLVED);
       })
@@ -50,7 +47,4 @@ const HomePage = () => {
   );
 };
 
-// Home.propTypes = {
-//     movies: propTypes.arr
-// }
 export default HomePage;

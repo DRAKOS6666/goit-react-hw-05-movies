@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import propTypes from 'prop-types';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 
 import style from './Searchbar.module.css';
@@ -29,17 +29,24 @@ function Searchbar({ onSubmit }) {
     setSearchText('');
   };
 
+  const {
+    searchbar,
+    searchForm,
+    searchFormButton,
+    searchFormButtonLabel,
+    searchFormInput,
+  } = style;
   return (
-    <header className={style.Searchbar}>
-      <form onSubmit={handleSubmit} className={style.SearchForm}>
-        <button type="submit" className={style.SearchFormButton}>
-          <span className={style.SearchFormButtonLabel}>Search</span>
+    <header className={searchbar}>
+      <form onSubmit={handleSubmit} className={searchForm}>
+        <button type="submit" className={searchFormButton}>
+          <span className={searchFormButtonLabel}>Search</span>
         </button>
 
         <input
           value={searchText}
           onChange={handleChange}
-          className={style.SearchFormInput}
+          className={searchFormInput}
           type="text"
           autoComplete="off"
           autoFocus
@@ -51,6 +58,6 @@ function Searchbar({ onSubmit }) {
 }
 
 Searchbar.propTypes = {
-  onSubmit: propTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 export default Searchbar;
