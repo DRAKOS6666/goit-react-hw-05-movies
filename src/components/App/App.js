@@ -6,14 +6,16 @@ import LoaderWithTitle from '../Loader/LoaderWithTitle/LoaderWithTitle';
 import style from './App.module.css';
 
 const HomePage = lazy(() =>
-  import('../../views/HomePage.js' /* webpackChunkName: "HomePage" */),
+  import('../../views/HomePage/HomePage.js' /* webpackChunkName: "HomePage" */),
 );
 const Movies = lazy(() =>
-  import('../../views/MoviesPage.js' /* webpackChunkName: "Movies" */),
+  import(
+    '../../views/MoviesPage/MoviesPage.js' /* webpackChunkName: "Movies" */
+  ),
 );
 const MovieDetailPage = lazy(() =>
   import(
-    '../../views/MovieDetailPage.js' /* webpackChunkName: "MovieDetailPage" */
+    '../../views/MovieDetailPage/MovieDetailPage.js' /* webpackChunkName: "MovieDetailPage" */
   ),
 );
 
